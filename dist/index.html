@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Jellyfish Palace · New Atlantis</title>
+  <meta name="description" content="A living palace beneath the sea. Explore the bells, light, and quiet currents of New Atlantis.">
+  <meta name="theme-color" content="#061b22">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 32a24 24 0 0148 0Q32 41 8 32ZM20 36q-12 10 0 20m12-20q-12 10 0 23m12-23q-12 10 0 20' fill='none' stroke='%239ae9da' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-jelly" viewBox="0 0 32 32"><path d="M4 16C4 2 28 2 28 16Q16 21 4 16Z M10 18C5 23 15 24 10 29M16 19C11 24 21 26 16 31M22 18C17 23 27 24 22 29M9 16C9 5 23 5 23 16M16 5V18"/></symbol>
+    <symbol id="i-arch" viewBox="0 0 32 32"><path d="M5 28V15Q5 7 16 3Q27 7 27 15V28M10 28V15Q10 10 16 7Q22 10 22 15V28M3 28H12M20 28H29M16 13V23"/></symbol>
+    <symbol id="i-hall" viewBox="0 0 32 32"><path d="M3 29V9Q16-2 29 9V29M8 29V13Q16 4 24 13V29M13 29V17Q16 13 19 17V29M3 9L13 17M29 9L19 17M3 29L13 24M29 29L19 24"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 32 32"><path d="M3 10Q9 4 16 10T29 10M3 17Q9 11 16 17T29 17M3 24Q9 18 16 24T29 24"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 32 32"><path d="M5 9H27M5 23H27M11 4V14M22 18V28"/><circle cx="11" cy="9" r="3"/><circle cx="22" cy="23" r="3"/></symbol>
+    <symbol id="i-light" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6"/><path d="M16 2V6M16 26V30M2 16H6M26 16H30M6 6L9 9M23 23L26 26M6 26L9 23M23 9L26 6"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 32 32"><path d="M4 12V4H12M20 4H28V12M28 20V28H20M12 28H4V20"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 32 32"><path d="M5 16H27M19 8L27 16L19 24"/></symbol>
+  </defs></svg>
+  <main id="world" aria-label="Interactive 3D jellyfish palace"></main>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="frame-lines" aria-hidden="true"></div>
+  <p id="rendererNotice" hidden>3D is unavailable in this browser. This is the source image.</p>
+
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Pixel Rhythms, return to entrance"><svg><use href="#i-jelly"/></svg><span>PIXEL RHYTHMS<small>WORLDS OF NEW ATLANTIS</small></span></a>
+    <nav aria-label="Study controls">
+      <button id="fieldButton" aria-label="Discover the palace" aria-expanded="true" aria-controls="fieldCard">Discover <span class="tiny-dot"></span></button>
+      <button id="referenceButton">Source film <svg class="diagonal-arrow"><use href="#i-arrow"/></svg></button>
+      <button id="aboutButton" aria-label="About this study">Field notes</button>
+      <button id="hideButton" class="icon-button" aria-label="Hide interface"><svg><use href="#i-expand"/></svg></button>
+    </nav>
+  </header>
+
+  <section id="intro" class="intro">
+    <p class="eyebrow"><span class="tiny-dot"></span> A LIVING WORLD BELOW THE SURFACE</p>
+    <h1>Jellyfish<br><em>Palace.</em></h1>
+    <p class="intro-copy">Where the architecture listens,<br>and the ocean breathes.</p>
+    <button id="enterButton" class="enter">Enter the palace <svg><use href="#i-arrow"/></svg></button>
+    <button id="quietButton" class="quiet">Wander quietly <svg class="diagonal-arrow"><use href="#i-arrow"/></svg></button>
+    <div class="edition"><span class="edition-line"></span> NEW ATLANTIS <b>01</b></div>
+  </section>
+
+  <aside id="fieldCard" class="field-card" aria-label="Palace field guide">
+    <div class="field-card-inner">
+      <div class="card-top"><span class="eyebrow">FIELD GUIDE <b id="fieldNumber">01</b></span><button id="closeField" aria-label="Close field guide">×</button></div>
+      <div class="specimen-drawing" aria-hidden="true"><div class="specimen-orbit"></div><svg id="specimenIcon"><use href="#i-jelly"/></svg><span class="specimen-cross">+</span><span class="specimen-scale">NEW ATLANTIS / LIVING FORMS</span></div>
+      <p class="eyebrow" id="fieldKicker">THE LIVING BELLS</p>
+      <h2 id="fieldTitle">Aurelia.</h2>
+      <p id="fieldDescription">Pearl membranes, trailing silk. Each bell follows its own quiet current through the hall.</p>
+      <button id="discoverButton" class="text-link">Visit the jellyfish garden <svg><use href="#i-arrow"/></svg></button>
+    </div>
+  </aside>
+
+  <div id="landmarks" class="landmarks" aria-label="Discover the palace" hidden>
+    <button data-landmark="bells"><span>+</span><b>The bell canopy</b></button>
+    <button data-landmark="jellies"><span>+</span><b>The living bells</b></button>
+    <button data-landmark="floor"><span>+</span><b>The tide floor</b></button>
+  </div>
+  <aside id="location" class="location" hidden><span class="eyebrow">WITHIN THE PALACE</span><p id="locationName">The threshold</p><span class="location-rule"></span></aside>
+
+  <section class="lower" aria-label="Playback and navigation">
+    <div class="instrument">
+      <div class="instrument-label"><span class="tiny-dot"></span> PALACE INSTRUMENT <span>PR / 01</span></div>
+      <div class="instrument-body">
+        <nav class="camera-bar" aria-label="Choose a viewpoint">
+          <button data-view="entrance" class="view-pad active" aria-pressed="true"><small>01</small><svg><use href="#i-arch"/></svg><span>Threshold</span></button>
+          <button data-view="hall" class="view-pad" aria-pressed="false"><small>02</small><svg><use href="#i-hall"/></svg><span>Bell hall</span></button>
+          <button data-view="garden" class="view-pad" aria-pressed="false"><small>03</small><svg><use href="#i-jelly"/></svg><span>Jellyfish</span></button>
+        </nav>
+        <div class="transport">
+          <button id="playButton" class="play" aria-label="Play palace audio"><span aria-hidden="true"></span></button>
+          <div class="track-screen">
+            <div class="track-top"><span id="trackName">Jellyfish Palace</span><span id="time">0:00</span></div>
+            <div class="screen-bottom"><div class="mini-spectrum" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small id="audioStatus" role="status">Ready to listen</small></div>
+          </div>
+        </div>
+        <div class="dock-tools">
+          <button id="lightButton" class="tool-pad" aria-label="Atmosphere settings" aria-expanded="false" aria-controls="scenePanel"><svg><use href="#i-light"/></svg><span>Light</span></button>
+          <button id="soundButton" class="tool-pad" aria-label="Sound settings" aria-expanded="false" aria-controls="soundPanel"><svg><use href="#i-sound"/></svg><span>Sound</span></button>
+        </div>
+        <div class="volume-block"><label for="volume">VOL</label><div class="fader"><input id="volume" aria-label="Volume" type="range" min="0" max="1" step="0.01" value="0.65"></div><output id="volumeValue" for="volume">65%</output></div>
+      </div>
+    </div>
+    <footer><span>DRAG TO LOOK <i>·</i> SCROLL / WASD TO WANDER</span><span>WORLD STUDY <i>·</i> v0.4</span></footer>
+  </section>
+  <button id="restoreButton" aria-label="Show interface" hidden><svg><use href="#i-expand"/></svg> Show controls</button>
+  <div class="mobile-move" hidden><button id="forwardButton" aria-label="Move forward">↑</button><button id="backButton" aria-label="Move backward">↓</button></div>
+
+  <section id="scenePanel" class="panel scene-panel" hidden aria-label="Atmosphere settings">
+    <div class="panel-title"><div><p class="eyebrow">THE WATER & THE LIGHT</p><h2>Settle into a mood.</h2></div><button id="closeScene" aria-label="Close atmosphere settings">×</button></div>
+    <div class="mood-options"><button data-mood="pearl" aria-pressed="true"><span class="mood-orb pearl-orb"></span><b>Pearl tide</b><small>Cool water, warm bells</small></button><button data-mood="amber" aria-pressed="false"><span class="mood-orb amber-orb"></span><b>Amber glow</b><small>A little more warmth</small></button></div>
+    <label class="toggle"><input id="drift" type="checkbox" checked><span>Living currents<small>Jellyfish, hanging silk & drifting light</small></span></label>
+    <p class="muted">The water keeps moving when the music rests.</p>
+  </section>
+  <section id="soundPanel" class="panel sound-panel" hidden aria-label="Sound settings">
+    <div class="panel-title"><div><p class="eyebrow">THE PALACE INSTRUMENT</p><h2>Let the room listen.</h2></div><button id="closeSound" aria-label="Close sound settings">×</button></div>
+    <p class="muted">Different parts of the palace respond to different ranges of the sound.</p>
+    <div class="voice"><span><b>Architecture</b><small>Low tones · gold crowns</small></span><meter id="bassMeter" min="0" max="1" value="0"></meter></div>
+    <div class="voice"><span><b>Jellyfish</b><small>Middle tones · bell movement</small></span><meter id="midMeter" min="0" max="1" value="0"></meter></div>
+    <div class="voice"><span><b>Filaments</b><small>High tones · pearl filaments</small></span><meter id="highMeter" min="0" max="1" value="0"></meter></div>
+    <div class="voice"><span><b>Floor</b><small>Low tones & attacks · caustics</small></span><meter id="floorMeter" min="0" max="1" value="0"></meter></div>
+    <label class="slider mobile-volume" for="mobileVolume">Volume <input id="mobileVolume" type="range" min="0" max="1" step="0.01" value="0.65"><output id="mobileVolumeValue">65%</output></label>
+    <label class="slider" for="response">Response <input id="response" type="range" min="0" max="2" step="0.05" value="1"><output id="responseValue">100%</output></label>
+    <label class="toggle"><input id="reaction" type="checkbox" checked><span>Audio response</span></label>
+    <details class="response-details"><summary>Response settings</summary><label class="response-style" for="responseStyle">Response style <select id="responseStyle"><option value="fluid">Fluid</option><option value="original">Original · compare</option></select></label><label class="slider" for="smoothing">Smoothing <input id="smoothing" type="range" min="0.5" max="2" step="0.1" value="1"><output id="smoothingValue">1×</output></label><p class="muted flow-hint" id="flowHint">Each band uses the range measured in this track. Smoothing sets how quickly the light and movement follow.</p></details>
+    <div class="panel-actions"><label class="file-button" tabindex="0">Load your audio<input id="audioFile" type="file" accept="audio/*" hidden></label><button id="resetAudio">Original loop</button></div>
+    <small class="muted">Audio stays in this browser. Up to 3 minutes.</small><small id="renderStatus" class="muted render-status">Measuring rendering…</small>
+  </section>
+
+  <dialog id="referenceDialog">
+    <div class="panel-title"><div><p class="eyebrow">THE KREA / H3 SOURCE FILM</p><h2>A world to step inside.</h2></div><button data-close="referenceDialog" aria-label="Close source film">×</button></div>
+    <video id="sourceVideo" src="./assets/reference.mp4" poster="./assets/reference.jpg" controls playsinline loop preload="none"></video>
+    <p>The original Jellyfish Palace film, with Daydream audio. This explorable world grows from its architecture, light, and living forms.</p>
+  </dialog>
+  <dialog id="aboutDialog">
+    <div class="panel-title"><p class="eyebrow">PIXEL RHYTHMS / NEW ATLANTIS</p><button data-close="aboutDialog" aria-label="Close about">×</button></div>
+    <h2>Architecture that listens.</h2>
+    <p>Gold ribs hold their symmetry. Pearl bells drift through the open sea. Light gathers in the architecture and settles into the water below.</p>
+    <p>This palace is an exploration of New Atlantis: a world where instruments, living systems, and architecture belong to one environment.</p>
+    <p>The three pads take you through the hall. Drag to look around, or move freely with the scroll wheel and WASD. Discover the details through the field guide. Use Light to change the atmosphere and Sound to bring your own music.</p>
+    <p class="muted">World study 01 · November 2026. Inspired by the Jellyfish Palace Krea / H3 film. Existing audio response from the Living Particles branch; living currents are ambient motion.</p>
+    <div class="shortcuts"><span>1–3 · viewpoints</span><span>Space · play / pause</span><span>H · hide controls</span><span>Esc · close panel</span></div>
+  </dialog>
+  <p id="notice" role="status" hidden></p>
+  <noscript>This world needs JavaScript. <a href="./assets/reference.mp4">Watch the source film.</a></noscript>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
