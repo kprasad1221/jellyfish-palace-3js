@@ -6,7 +6,7 @@ The supplied **Jellyfish Palace** Krea / H3 film is the visual reference and the
 
 ## Run locally
 
-Install Node.js if you do not already have it. Extract this folder, open a terminal here, and run:
+With Node.js installed, open a terminal in the cloned repository and run the following command.
 
 ```sh
 npm start
@@ -96,8 +96,8 @@ The preview browser reports WebGL disabled and displays the film still behind th
 
 Reference material is preserved outside the served `dist` folder under `references/`: the complete user-supplied Temple Night registered source (all three SHA-256 hashes verified) and the Sylva template. This pass borrows their design principles, not their renderer code. Temple Night's exact renderer targets Three.js r149; it has not been embedded, ported, or replaced with an approximate Temple Night component.
 
-## Fresh GitHub repository
+## Project source and media
 
-The GitHub connector in this session could read the source repo but did not expose repository creation; CLI GitHub login was not available in the initial check. This delivery therefore uses the authorized Sites preview and a source ZIP. It does **not** claim that a new GitHub repository has been created.
+This repository contains the source and media for the published v0.4 study. The initial full import matches the site’s source commit `0bbf3c480331554a424043b87bf2edf027403abc`. [Open Jellyfish Palace](https://pixel-rhythms-jellyfish-palace.shudoof.chatgpt.site)
 
-Suggested name: `jellyfish-palace-3js`. In GitHub Desktop choose **File → Add local repository** for the extracted folder, choose **create a repository here** if prompted, then **Publish repository**. Keep it private until you decide how to share the source media. The Sites hosting manifest and Git metadata are omitted from the download so it starts independently. The included media rights remain with their respective owners; the code license does not grant new rights to the media.
+The included media rights remain with their respective owners. See [LICENSE](LICENSE) for the project code license.
